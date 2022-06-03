@@ -51,7 +51,7 @@ Membre.getMembreByID = (id, result)=>{
 
 // delete Membre
 Membre.deleteMembre = (id, result)=>{
-    dbConn.query('DELETE FROM Membre WHERE id=?', [id], (err, res)=>{
+    dbConn.query('DELETE FROM Membre WHERE ID_Membre=?', [id], (err, res)=>{
         if(err){
             console.log('Error while deleting the Membre');
             result(null, err);

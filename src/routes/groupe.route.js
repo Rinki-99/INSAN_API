@@ -13,4 +13,7 @@ router.post('/', groupeController.createNewGroupe);
 //get groupe by id
 router.get('/:id',groupeController.getGroupeByID);
 
+//delete groupe by id
+router.delete('/:id',groupeController.deleteGroupe);
+
 module.exports = router;

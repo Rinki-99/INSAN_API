@@ -19,4 +19,8 @@ router.put('/:id', sectionController.updateSection);
 //delete section
 router.delete('/:id', sectionController.deleteSection);
 
+//taux présence 
+router.get('/taux/:mois/:activite', sectionController.getTauxPresenceActiviteMois);
+
+
 module.exports = router;

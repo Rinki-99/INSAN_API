@@ -13,4 +13,10 @@ router.post('/', cotisationController.createNewCotisation);
 //get cotisation by id
 router.get('/:id',cotisationController.getCotisationByID);
 
+//taux cotisation par groupe, trimestre et année
+router.get('/taux/:trimestre/:annee', cotisationController.getTauxCotisation);
+
+//update cotisation
+router.put('/:id', cotisationController.updateCotisation);
+
 module.exports = router;

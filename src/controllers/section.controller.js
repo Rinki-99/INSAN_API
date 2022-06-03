@@ -2,7 +2,6 @@ const Section = require('../models/section.model');
 const SectionModel = require('../models/section.model')
 
 // Get sections list
-
 exports.getSectionList = (req, res) => {
     //console.log('Here sections list');
     SectionModel.getAllSections((err, sections) => {
@@ -60,9 +59,19 @@ exports.updateSection = (req, res)=>{
 
 // delete Section
 exports.deleteSection = (req, res)=>{
-    SectionModel.deleteSection(req.params.id, (err, Section)=>{
+    SectionModel.deleteSection(req.params.id, (err, section)=>{
         if(err)
         res.send(err);
         res.json({success:true, message: 'Section deleted successully!'});
+    })
+}
+
+// get taux présence par activite et par mois
+exports.getTauxPresenceActiviteMois = (req, res)=>{
+    SectionModel.getTauxPresenceActiviteMois(req.params.mois, req.params.activite, (err, section)=>{
+        if(err)
+        res.send(err);
+        console.log('Taux section', section);
+        res.send(section);
     })
 }

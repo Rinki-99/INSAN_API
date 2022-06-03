@@ -40,3 +40,12 @@ exports.getGroupeByID = (req, res)=>{
         res.send(groupe);
     })
 }
+
+// delete Groupe
+exports.deleteGroupe = (req, res)=>{
+    GroupeModel.deleteGroupe(req.params.id, (err, groupe)=>{
+        if(err)
+        res.send(err);
+        res.json({success:true, message: 'Groupe deleted successully!'});
+    })
+}

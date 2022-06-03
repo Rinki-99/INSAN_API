@@ -48,5 +48,17 @@ Groupe.getGroupeByID = (id, result)=>{
     })
 }
 
+// delete Groupe
+Groupe.deleteGroupe = (id, result)=>{
+    dbConn.query('DELETE FROM Groupe WHERE ID_Groupe=?', [id], (err, res)=>{
+        if(err){
+            console.log('Error while deleting the Groupe');
+            result(null, err);
+        }else{
+            result(null, res);
+        }
+   });
+}
+
 
 module.exports = Groupe;

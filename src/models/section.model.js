@@ -70,13 +70,25 @@ Section.updateSection = (id, sectionReqData, result)=>{
 
 // delete Section
 Section.deleteSection = (id, result)=>{
-     dbConn.query('DELETE FROM Section WHERE id=?', [id], (err, res)=>{
+     dbConn.query('DELETE FROM Section WHERE ID_Section=?', [id], (err, res)=>{
          if(err){
              console.log('Error while deleting the Section');
              result(null, err);
          }else{
              result(null, res);
          }
+    });
+}
+
+//  get taux présence par activite et par mois
+Section.getTauxPresenceActiviteMois = (mois, activite, result)=>{
+    dbConn.query('SELECT round(count(*)/(select count(*) from present_absent where Activite = ?)*100) as Percentage_presences, a.Nom as Activite, a.date_activite FROM Activite a INNER JOIN present_absent p ON a.ID_Activite = p.Activite WHERE p.date_activite LIKE ? AND p.Activite = ? AND p.present = 1', [activite,mois + '%', activite], (err, res)=>{
+        if(err){
+            console.log('Error while searching taux activité');
+            result(null,err);
+        }else{
+            result(null,res);
+        }
     });
 }
 
